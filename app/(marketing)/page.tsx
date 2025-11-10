@@ -1,0 +1,202 @@
+'use client'
+
+import PageContainer from '@/components/layout/page-container';
+import { AnimatedBackground } from '@/components/marketing/AnimatedBackground';
+import { Button } from '@/components/ui/button';
+import Link from 'next/link';
+import { Zap, Users, GitBranch, Eye, Check, ArrowRight, Code, Rocket, Shield, Clock, Star, TrendingUp, Sparkles, Bolt, Globe, Lock } from 'lucide-react';
+
+export default function HomePage() {
+  const seoData = {
+    description: 'Zenith is an AI-powered development platform that helps you build and deploy production-ready applications in hours, not months.',
+    keywords: ['MVP development', 'AI code generation', 'rapid prototyping', 'developer platform', 'startup tools', 'web development', 'no-code']
+  };
+
+  return (
+    <PageContainer
+      title="Zenith - Build Production-Ready Apps Faster"
+      seo={seoData}
+    >
+      {/* Three.js Animated Background */}
+      <AnimatedBackground />
+
+      {/* Hero Section - MASSIVE BOLD TEXT */}
+      <section className="relative overflow-hidden min-h-screen flex items-center justify-center">
+        <div className="container px-4 mx-auto relative z-10">
+          <div className="max-w-7xl mx-auto text-center">
+            {/* Frosted Glass Background */}
+            <div className="absolute inset-0 bg-white/40 backdrop-blur-md rounded-3xl -z-10"></div>
+
+            {/* MASSIVE HERO HEADING */}
+            <h1 className="font-heading tracking-tighter text-6xl sm:text-7xl lg:text-8xl font-black mb-8 leading-tight pt-16">
+              <span className="block text-gray-900">Build and Deploy</span>
+              <span className="block bg-gradient-to-r from-orange-600 via-orange-700 to-orange-800 bg-clip-text text-transparent">
+                Production-Ready Apps
+              </span>
+              <span className="block text-gray-900">In Hours, Not Months</span>
+            </h1>
+
+            <p className="text-xl md:text-2xl text-gray-700 mb-16 max-w-4xl mx-auto leading-relaxed">
+              AI-powered development platform that generates complete web applications with authentication, databases, and deployment—ready to customize and ship.
+            </p>
+
+            {/* CTA Buttons - SLICK & MODERN */}
+            <div className="flex flex-wrap justify-center gap-6 mb-16">
+              <Link href="/login">
+                <Button className="group relative overflow-hidden bg-gradient-to-r from-amber-500 via-orange-600 to-orange-700 hover:from-amber-600 hover:via-orange-700 hover:to-orange-800 text-white font-black text-xl px-14 py-8 rounded-xl shadow-[0_20px_50px_rgba(251,146,60,0.5)] hover:shadow-[0_20px_60px_rgba(251,146,60,0.7)] transform hover:scale-105 hover:-translate-y-1 transition-all duration-300 border border-amber-400/50">
+                  <div className="absolute inset-0 bg-gradient-to-r from-white/0 via-white/20 to-white/0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700"></div>
+                  <span className="relative z-10">Get Started Free</span>
+                </Button>
+              </Link>
+              <Link href="/pricing">
+                <Button className="group relative overflow-hidden bg-white/10 backdrop-blur-md hover:bg-white/20 text-gray-900 font-bold text-xl px-14 py-8 rounded-xl shadow-2xl transform hover:scale-105 hover:-translate-y-1 transition-all duration-300 border-2 border-white/30 hover:border-white/50">
+                  <div className="absolute inset-0 bg-gradient-to-r from-orange-500/0 via-orange-500/10 to-orange-500/0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700"></div>
+                  <span className="relative z-10">VIEW PRICING</span>
+                </Button>
+              </Link>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Stats Section */}
+      <section className="relative py-24">
+        <div className="container mx-auto px-4">
+          <div className="relative bg-white/40 backdrop-blur-md rounded-3xl p-12 border border-white/30">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-12 max-w-7xl mx-auto">
+            <div className="text-center group">
+              <div className="text-5xl md:text-6xl font-black text-gray-900 mb-3 group-hover:text-orange-700 transition-colors">
+                10hrs
+              </div>
+              <div className="text-sm font-semibold text-gray-700 uppercase tracking-wide">Average Setup Time</div>
+            </div>
+            <div className="text-center group">
+              <div className="text-5xl md:text-6xl font-black text-gray-900 mb-3 group-hover:text-orange-700 transition-colors">
+                100%
+              </div>
+              <div className="text-sm font-semibold text-gray-700 uppercase tracking-wide">Code Ownership</div>
+            </div>
+            <div className="text-center group">
+              <div className="text-5xl md:text-6xl font-black text-gray-900 mb-3 group-hover:text-orange-700 transition-colors">
+                100
+              </div>
+              <div className="text-sm font-semibold text-gray-700 uppercase tracking-wide">Free Credits to Start</div>
+            </div>
+            <div className="text-center group">
+              <div className="text-5xl md:text-6xl font-black text-gray-900 mb-3 group-hover:text-orange-700 transition-colors">
+                24/7
+              </div>
+              <div className="text-sm font-semibold text-gray-700 uppercase tracking-wide">Platform Availability</div>
+            </div>
+          </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Features Section */}
+      <section className="relative py-32">
+        <div className="container mx-auto px-4">
+          <div className="max-w-7xl mx-auto bg-white/40 backdrop-blur-md rounded-3xl p-12 border border-white/30">
+            <div className="text-center mb-20">
+              <p className="text-orange-600 font-bold text-sm uppercase tracking-wider mb-4">Features</p>
+              <h2 className="text-5xl md:text-6xl font-black text-gray-900 mb-6">
+                Everything you need <span className="text-orange-600">to ship faster</span>
+              </h2>
+            </div>
+
+            <div className="grid md:grid-cols-3 gap-8">
+              {[
+                {
+                  icon: Zap,
+                  title: 'AI-Powered Code Generation',
+                  description: 'Generate complete Next.js applications with authentication, database schemas, and API routes. Customize and deploy in hours.',
+                  features: ['Next.js 15 + React', 'TypeScript included', 'Prisma + PostgreSQL']
+                },
+                {
+                  icon: Code,
+                  title: 'Clean Architecture',
+                  description: 'Maintainable, well-structured code following industry best practices.',
+                  features: ['Component-based architecture', 'Easy to customize', 'Fully documented']
+                },
+                {
+                  icon: GitBranch,
+                  title: 'GitHub Integration',
+                  description: 'Seamless version control with automated deployment workflows.',
+                  features: ['Auto repository creation', 'PR automation', 'Built-in code reviews']
+                },
+                {
+                  icon: Eye,
+                  title: 'Instant Previews',
+                  description: 'See changes live in real-time. Share preview links instantly.',
+                  features: ['Live preview URLs', 'Team collaboration', 'Mobile responsive']
+                },
+                {
+                  icon: Shield,
+                  title: 'Enterprise Security',
+                  description: 'SOC 2 compliant with built-in authentication and encryption.',
+                  features: ['NextAuth integration', 'SOC 2 compliant', 'Encrypted data storage']
+                },
+                {
+                  icon: Rocket,
+                  title: 'One-Click Deploy',
+                  description: 'Deploy to any platform with global CDN and automatic SSL.',
+                  features: ['Vercel integration', 'Auto SSL certificates', 'Global CDN']
+                }
+              ].map((feature, idx) => (
+                <div key={idx} className="group p-8 bg-white/5 backdrop-blur-md rounded-2xl border border-white/10 hover:border-yellow-400/50 hover:bg-white/10 transition-all duration-300">
+                  <div className="w-16 h-16 bg-gradient-to-br from-amber-500 to-orange-600 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                    <feature.icon className="w-8 h-8 text-white" />
+                  </div>
+                  <h3 className="text-2xl font-bold text-gray-900 mb-4">{feature.title}</h3>
+                  <p className="text-gray-700 mb-6 leading-relaxed">{feature.description}</p>
+                  <div className="space-y-3">
+                    {feature.features.map((item, i) => (
+                      <div key={i} className="flex items-center gap-2 text-sm text-gray-700">
+                        <Check className="w-4 h-4 text-orange-600" />
+                        <span>{item}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* CTA Section */}
+      <section className="relative py-32">
+        <div className="container mx-auto px-4">
+          <div className="max-w-5xl mx-auto text-center bg-white/40 backdrop-blur-md rounded-3xl p-16 border border-white/30">
+            <h2 className="text-5xl md:text-7xl font-black text-gray-900 mb-6">
+              Ready to build your <span className="text-orange-600">next project?</span>
+            </h2>
+            <p className="text-2xl text-gray-800 mb-12">
+              Get started with 100 free credits. <span className="block mt-2 text-gray-700">No credit card required.</span>
+            </p>
+            <Link href="/login">
+              <Button className="group relative overflow-hidden bg-white hover:bg-gray-100 text-orange-600 font-black text-2xl px-16 py-10 rounded-2xl shadow-[0_30px_60px_rgba(255,255,255,0.3)] hover:shadow-[0_30px_80px_rgba(255,255,255,0.4)] transform hover:scale-105 transition-all duration-300">
+                <div className="absolute inset-0 bg-gradient-to-r from-amber-500/0 via-amber-500/20 to-amber-500/0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700"></div>
+                <span className="relative z-10">Start Building Free</span>
+              </Button>
+            </Link>
+            <div className="flex flex-wrap justify-center items-center gap-8 mt-12 text-sm text-gray-600">
+              <div className="flex items-center gap-2">
+                <Check className="w-4 h-4 text-green-600" />
+                <span>Full code ownership</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <Check className="w-4 h-4 text-green-600" />
+                <span>Export to GitHub</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <Check className="w-4 h-4 text-green-600" />
+                <span>Cancel anytime</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </PageContainer>
+  );
+}
