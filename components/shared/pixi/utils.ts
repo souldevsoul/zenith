@@ -1,6 +1,4 @@
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-// @ts-nocheck -- TODO: fix this
-
+// @ts-nocheck
 import { Application, Assets, Sprite, Texture } from "pixi.js";
 
 export const isDestroyed = (app: Application) => {

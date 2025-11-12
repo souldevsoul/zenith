@@ -101,9 +101,9 @@ export default async function ProjectDetailPage({ params }: Props) {
                       <div
                         className={`w-3 h-3 rounded-full mr-3 ${
                           latestMVP.status === 'completed'
-                            ? 'bg-green-500'
+                            ? 'bg-yellow-500'
                             : latestMVP.status === 'running'
-                            ? 'bg-blue-500 animate-pulse'
+                            ? 'bg-orange-500 animate-pulse'
                             : latestMVP.status === 'failed'
                             ? 'bg-red-500'
                             : 'bg-gray-400'
@@ -123,7 +123,7 @@ export default async function ProjectDetailPage({ params }: Props) {
                         href={latestMVP.prUrl}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="flex items-center text-sm text-violet-600 hover:text-violet-700"
+                        className="flex items-center text-sm text-orange-600 hover:text-orange-700"
                       >
                         View PR
                         <ExternalLink className="w-4 h-4 ml-1" />
@@ -136,19 +136,19 @@ export default async function ProjectDetailPage({ params }: Props) {
                       href={latestMVP.previewUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="block p-4 bg-violet-50 border border-violet-200 rounded-lg hover:border-violet-300 transition"
+                      className="block p-4 bg-orange-50 border border-orange-200 rounded-lg hover:border-orange-300 transition"
                     >
                       <div className="flex items-center justify-between">
                         <div className="flex items-center">
-                          <Zap className="w-5 h-5 text-violet-600 mr-3" />
+                          <Zap className="w-5 h-5 text-orange-600 mr-3" />
                           <div>
-                            <div className="font-medium text-violet-900">Live Preview</div>
-                            <div className="text-sm text-violet-600">
+                            <div className="font-medium text-orange-900">Live Preview</div>
+                            <div className="text-sm text-orange-600">
                               Click to view your MVP
                             </div>
                           </div>
                         </div>
-                        <ExternalLink className="w-5 h-5 text-violet-600" />
+                        <ExternalLink className="w-5 h-5 text-orange-600" />
                       </div>
                     </a>
                   )}
@@ -191,7 +191,7 @@ export default async function ProjectDetailPage({ params }: Props) {
                     href={`https://github.com/${project.repoFullName}`}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center text-sm text-violet-600 hover:text-violet-700"
+                    className="flex items-center text-sm text-orange-600 hover:text-orange-700"
                   >
                     <GitBranch className="w-4 h-4 mr-1" />
                     {project.repoFullName}
@@ -202,9 +202,9 @@ export default async function ProjectDetailPage({ params }: Props) {
                   <span
                     className={`inline-flex px-2.5 py-1 rounded-full text-xs font-medium ${
                       project.status === 'active'
-                        ? 'bg-green-100 text-green-700'
+                        ? 'bg-yellow-100 text-yellow-700'
                         : project.status === 'mvp_preview'
-                        ? 'bg-blue-100 text-blue-700'
+                        ? 'bg-orange-100 text-orange-700'
                         : 'bg-gray-100 text-gray-700'
                     }`}
                   >
@@ -236,13 +236,13 @@ export default async function ProjectDetailPage({ params }: Props) {
                 </div>
                 <div className="flex justify-between items-center">
                   <span className="text-sm text-gray-600">In Progress</span>
-                  <span className="font-semibold text-blue-600">
+                  <span className="font-semibold text-amber-600">
                     {project.tasks.filter((t) => t.status === 'in_progress' || t.status === 'assigned').length}
                   </span>
                 </div>
                 <div className="flex justify-between items-center">
                   <span className="text-sm text-gray-600">Completed</span>
-                  <span className="font-semibold text-green-600">
+                  <span className="font-semibold text-yellow-600">
                     {project.tasks.filter((t) => t.status === 'done').length}
                   </span>
                 </div>

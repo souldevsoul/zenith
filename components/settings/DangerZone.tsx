@@ -76,7 +76,7 @@ export function DangerZone({ userId }: { userId: string }) {
 
         <AlertDialog>
           <AlertDialogTrigger asChild>
-            <Button variant="destructive" disabled={isDeleting}>
+            <Button type="button" variant="destructive" disabled={isDeleting}>
               {isDeleting ? (
                 <>
                   <Loader2 className="w-4 h-4 mr-2 animate-spin" />

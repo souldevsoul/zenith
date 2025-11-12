@@ -204,6 +204,7 @@ const Menu = ({ setOpen }: { setOpen: (open: boolean) => void }) => {
 const Button = (attributes: React.ButtonHTMLAttributes<HTMLButtonElement>) => {
   return (
     <button
+      type="button"
       {...attributes}
       className={cn(
         "flex gap-8 w-full items-center text-label-small group text-accent-black p-6",

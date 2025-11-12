@@ -36,7 +36,7 @@ export default function HeaderDropdownMobile({
       <div className="p-24 flex flex-col gap-8 border-b border-border-faint relative -mt-1">
         <HeaderGithubClient />
         <Link href={ctaHref}>
-          <Button variant="secondary"> {ctaLabel} </Button>
+          <Button type="button" variant="secondary"> {ctaLabel} </Button>
         </Link>
 
         <ConnectorToRight className="left-0 -bottom-11" />

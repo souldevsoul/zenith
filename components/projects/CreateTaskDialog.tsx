@@ -96,7 +96,7 @@ export function CreateTaskDialog({ projectId }: { projectId: string }) {
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
-        <Button>
+        <Button type="button">
           <Plus className="w-4 h-4 mr-2" />
           New Task
         </Button>

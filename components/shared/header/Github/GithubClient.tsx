@@ -10,7 +10,7 @@ export default function HeaderGithubClient() {
       href="https://github.com/firecrawl/firecrawl"
       target="_blank"
     >
-      <Button variant="tertiary">
+      <Button type="button" variant="tertiary">
         <GithubIcon />
         21.5k
       </Button>

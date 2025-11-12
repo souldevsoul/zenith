@@ -1,4 +1,3 @@
-/* eslint-disable react/jsx-no-comment-textnodes */
 import { HTMLAttributes } from "react";
 
 import { cn } from "@/utils/cn";
@@ -14,11 +13,11 @@ function Badge({ ...attrs }: HTMLAttributes<HTMLDivElement>) {
     >
       <div className="h-1 bottom-0 absolute w-full left-0 bg-border-faint" />
       <div className="text-black-alpha-16 pointer-events-none select-none">
-        //
+        {'//'}
       </div>
       <div className="relative flex gap-10 items-center">{attrs.children}</div>
       <div className="text-black-alpha-16 pointer-events-none select-none -scale-x-100">
-        //
+        {'//'}
       </div>
     </div>
   );

@@ -43,13 +43,13 @@ export default function HomePage() {
             {/* CTA Buttons - SLICK & MODERN */}
             <div className="flex flex-wrap justify-center gap-6 mb-16">
               <Link href="/login">
-                <Button className="group relative overflow-hidden bg-gradient-to-r from-amber-500 via-orange-600 to-orange-700 hover:from-amber-600 hover:via-orange-700 hover:to-orange-800 text-white font-black text-xl px-14 py-8 rounded-xl shadow-[0_20px_50px_rgba(251,146,60,0.5)] hover:shadow-[0_20px_60px_rgba(251,146,60,0.7)] transform hover:scale-105 hover:-translate-y-1 transition-all duration-300 border border-amber-400/50">
+                <Button type="button" className="group relative overflow-hidden bg-gradient-to-r from-amber-500 via-orange-600 to-orange-700 hover:from-amber-600 hover:via-orange-700 hover:to-orange-800 text-white font-black text-xl px-14 py-8 rounded-xl shadow-[0_20px_50px_rgba(251,146,60,0.5)] hover:shadow-[0_20px_60px_rgba(251,146,60,0.7)] transform hover:scale-105 hover:-translate-y-1 transition-all duration-300 border border-amber-400/50">
                   <div className="absolute inset-0 bg-gradient-to-r from-white/0 via-white/20 to-white/0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700"></div>
                   <span className="relative z-10">Get Started Free</span>
                 </Button>
               </Link>
               <Link href="/pricing">
-                <Button className="group relative overflow-hidden bg-white/10 backdrop-blur-md hover:bg-white/20 text-gray-900 font-bold text-xl px-14 py-8 rounded-xl shadow-2xl transform hover:scale-105 hover:-translate-y-1 transition-all duration-300 border-2 border-white/30 hover:border-white/50">
+                <Button type="button" className="group relative overflow-hidden bg-white/10 backdrop-blur-md hover:bg-white/20 text-gray-900 font-bold text-xl px-14 py-8 rounded-xl shadow-2xl transform hover:scale-105 hover:-translate-y-1 transition-all duration-300 border-2 border-white/30 hover:border-white/50">
                   <div className="absolute inset-0 bg-gradient-to-r from-orange-500/0 via-orange-500/10 to-orange-500/0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700"></div>
                   <span className="relative z-10">VIEW PRICING</span>
                 </Button>
@@ -175,22 +175,22 @@ export default function HomePage() {
               Get started with 100 free credits. <span className="block mt-2 text-gray-700">No credit card required.</span>
             </p>
             <Link href="/login">
-              <Button className="group relative overflow-hidden bg-white hover:bg-gray-100 text-orange-600 font-black text-2xl px-16 py-10 rounded-2xl shadow-[0_30px_60px_rgba(255,255,255,0.3)] hover:shadow-[0_30px_80px_rgba(255,255,255,0.4)] transform hover:scale-105 transition-all duration-300">
+              <Button type="button" className="group relative overflow-hidden bg-white hover:bg-gray-100 text-orange-600 font-black text-2xl px-16 py-10 rounded-2xl shadow-[0_30px_60px_rgba(255,255,255,0.3)] hover:shadow-[0_30px_80px_rgba(255,255,255,0.4)] transform hover:scale-105 transition-all duration-300">
                 <div className="absolute inset-0 bg-gradient-to-r from-amber-500/0 via-amber-500/20 to-amber-500/0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700"></div>
                 <span className="relative z-10">Start Building Free</span>
               </Button>
             </Link>
             <div className="flex flex-wrap justify-center items-center gap-8 mt-12 text-sm text-gray-600">
               <div className="flex items-center gap-2">
-                <Check className="w-4 h-4 text-green-600" />
+                <Check className="w-4 h-4 text-yellow-600" />
                 <span>Full code ownership</span>
               </div>
               <div className="flex items-center gap-2">
-                <Check className="w-4 h-4 text-green-600" />
+                <Check className="w-4 h-4 text-yellow-600" />
                 <span>Export to GitHub</span>
               </div>
               <div className="flex items-center gap-2">
-                <Check className="w-4 h-4 text-green-600" />
+                <Check className="w-4 h-4 text-yellow-600" />
                 <span>Cancel anytime</span>
               </div>
             </div>

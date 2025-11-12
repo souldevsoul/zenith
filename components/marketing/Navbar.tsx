@@ -52,12 +52,6 @@ export function Navbar() {
               Pricing
             </Link>
             <Link
-              href="/experts"
-              className="px-3 py-2 rounded-full text-white text-sm hover:bg-white hover:bg-opacity-20 transition duration-200"
-            >
-              Experts
-            </Link>
-            <Link
               href="/blog"
               className="px-3 py-2 rounded-full text-white text-sm hover:bg-white hover:bg-opacity-20 transition duration-200"
             >
@@ -104,13 +98,6 @@ export function Navbar() {
                 onClick={() => setIsMenuOpen(false)}
               >
                 Pricing
-              </Link>
-              <Link
-                href="/experts"
-                className="block px-4 py-3 text-sm font-medium text-white hover:bg-white hover:bg-opacity-10 rounded-lg transition"
-                onClick={() => setIsMenuOpen(false)}
-              >
-                Experts
               </Link>
               <Link
                 href="/blog"

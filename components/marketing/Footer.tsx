@@ -62,11 +62,6 @@ export function Footer() {
                 </Link>
               </li>
               <li>
-                <Link href="/experts" className="text-sm text-white text-opacity-70 hover:text-opacity-100 transition">
-                  Experts
-                </Link>
-              </li>
-              <li>
                 <Link href="/builder" className="text-sm text-white text-opacity-70 hover:text-opacity-100 transition">
                   Try Builder
                 </Link>
@@ -108,14 +103,6 @@ export function Footer() {
               <li>
                 <Link href="/terms" className="text-sm text-white text-opacity-70 hover:text-opacity-100 transition">
                   Terms of Service
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/acceptable-use"
-                  className="text-sm text-white text-opacity-70 hover:text-opacity-100 transition"
-                >
-                  Acceptable Use
                 </Link>
               </li>
             </ul>

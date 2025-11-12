@@ -130,9 +130,9 @@ export default function NewProjectPage() {
               )}
 
               {/* Info Box */}
-              <div className="p-4 bg-blue-50 border border-blue-200 rounded-lg">
-                <h4 className="text-sm font-medium text-blue-900 mb-2">What happens next?</h4>
-                <ul className="text-sm text-blue-700 space-y-1">
+              <div className="p-4 bg-orange-50 border border-orange-200 rounded-lg">
+                <h4 className="text-sm font-medium text-orange-900 mb-2">What happens next?</h4>
+                <ul className="text-sm text-orange-700 space-y-1">
                   <li>• Your project will be created</li>
                   <li>• You'll be able to generate an MVP (costs 100 credits)</li>
                   <li>• A GitHub branch and PR will be created automatically</li>

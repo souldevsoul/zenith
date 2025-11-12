@@ -135,6 +135,7 @@ export default function AboutPage() {
             </p>
             <Link href="/login">
               <Button
+                type="button"
                 variant="secondary"
                 size="large"
               >

@@ -32,7 +32,7 @@ export default function ContactPage() {
                 Form submissions are currently in development.
               </p>
               <p className="text-gray-700 mt-1">
-                Please email us directly at <a href="mailto:support@nimbusdev.com" className="text-blue-600 hover:underline">support@nimbusdev.com</a>
+                Please email us directly at <a href="mailto:support@zenithdev.com" className="text-orange-600 hover:underline">support@zenithdev.com</a>
               </p>
             </div>
           </div>
@@ -47,8 +47,8 @@ export default function ContactPage() {
               {
                 icon: Mail,
                 title: 'Email Us',
-                description: 'support@nimbusdev.com',
-                action: 'mailto:support@nimbusdev.com'
+                description: 'support@zenithdev.com',
+                action: 'mailto:support@zenithdev.com'
               },
               {
                 icon: MessageSquare,
@@ -65,8 +65,8 @@ export default function ContactPage() {
               {
                 icon: Building2,
                 title: 'Enterprise',
-                description: 'enterprise@nimbusdev.com',
-                action: 'mailto:enterprise@nimbusdev.com'
+                description: 'support@zenithdev.com',
+                action: 'mailto:support@zenithdev.com'
               }
             ].map((option, index) => (
               <a
@@ -74,7 +74,7 @@ export default function ContactPage() {
                 href={option.action}
                 className="bg-white/40 backdrop-blur-md rounded-3xl border border-white/30 p-8 shadow-lg hover:shadow-xl transition-shadow text-center group"
               >
-                <div className="w-16 h-16 bg-gradient-to-br from-blue-600 to-cyan-500 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform">
+                <div className="w-16 h-16 bg-gradient-to-br from-orange-600 to-amber-500 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform">
                   <option.icon className="w-8 h-8 text-white" />
                 </div>
                 <h3 className="text-xl font-semibold text-gray-900 mb-3">
@@ -102,7 +102,7 @@ export default function ContactPage() {
                     <input
                       type="text"
                       id="name"
-                      className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-600 focus:border-transparent outline-none transition"
+                      className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-orange-600 focus:border-transparent outline-none transition"
                       placeholder="Your name"
                       disabled
                     />
@@ -114,7 +114,7 @@ export default function ContactPage() {
                     <input
                       type="email"
                       id="email"
-                      className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-600 focus:border-transparent outline-none transition"
+                      className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-orange-600 focus:border-transparent outline-none transition"
                       placeholder="your@email.com"
                       disabled
                     />
@@ -173,10 +173,10 @@ export default function ContactPage() {
             Check out our FAQ section or documentation for instant answers to common questions.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button variant="outline" size="large">
+            <Button type="button" variant="outline" size="large">
               View FAQ
             </Button>
-            <Button variant="outline" size="large">
+            <Button type="button" variant="outline" size="large">
               Read Docs
             </Button>
           </div>

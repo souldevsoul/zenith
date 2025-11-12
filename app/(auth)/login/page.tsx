@@ -88,7 +88,7 @@ export default function LoginPage() {
             {/* Logo */}
             <div className="text-center mb-8">
               <Link className="inline-flex items-center gap-2.5 mb-8 group" href="/">
-                <div className="w-10 h-10 bg-gradient-to-br from-sky-600 to-blue-700 rounded-lg flex items-center justify-center transition-transform group-hover:scale-105">
+                <div className="w-10 h-10 bg-gradient-to-br from-orange-600 to-amber-700 rounded-lg flex items-center justify-center transition-transform group-hover:scale-105">
                   <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 12h14M12 5l7 7-7 7" transform="rotate(-45 12 12)" />
                   </svg>
@@ -163,7 +163,7 @@ export default function LoginPage() {
                 {!isSignUp && (
                   <div className="text-right mb-8">
                     <a
-                      className="inline-block text-sm font-semibold text-blue-600 hover:text-blue-700 focus:outline-none focus:underline"
+                      className="inline-block text-sm font-semibold text-orange-600 hover:text-orange-700 focus:outline-none focus:underline"
                       href="#"
                     >
                       Forgot Password?
@@ -203,11 +203,11 @@ export default function LoginPage() {
               {isSignUp && (
                 <p className="mt-6 text-xs text-center text-gray-700">
                   By signing up, you agree to our{' '}
-                  <Link href="/terms" className="text-blue-600 hover:text-blue-700 hover:underline font-medium">
+                  <Link href="/terms" className="text-orange-600 hover:text-orange-700 hover:underline font-medium">
                     Terms of Service
                   </Link>{' '}
                   and{' '}
-                  <Link href="/privacy" className="text-blue-600 hover:text-blue-700 hover:underline font-medium">
+                  <Link href="/privacy" className="text-orange-600 hover:text-orange-700 hover:underline font-medium">
                     Privacy Policy
                   </Link>
                 </p>
@@ -217,7 +217,7 @@ export default function LoginPage() {
             {isSignUp && (
               <div className="text-center">
                 <div className="inline-flex items-center px-6 py-3 bg-white/40 backdrop-blur-md border border-white/30 rounded-xl text-gray-900 text-sm font-medium">
-                  <svg className="w-4 h-4 mr-2 text-blue-600" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
+                  <svg className="w-4 h-4 mr-2 text-orange-600" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                   </svg>
                   Get 100 free credits when you sign up

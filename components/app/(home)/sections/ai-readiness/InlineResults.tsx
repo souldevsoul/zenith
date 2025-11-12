@@ -331,7 +331,7 @@ export default function InlineResults({
             >
               Try Another
             </button>
-            <button className="flex-1 px-16 py-10 bg-heat-100 hover:bg-heat-200 text-white rounded-8 text-label-medium transition-all shadow-lg hover:shadow-xl">
+            <button type="button" className="flex-1 px-16 py-10 bg-heat-100 hover:bg-heat-200 text-white rounded-8 text-label-medium transition-all shadow-lg hover:shadow-xl">
               View Details
             </button>
           </motion.div>

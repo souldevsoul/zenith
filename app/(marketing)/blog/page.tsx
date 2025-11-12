@@ -35,7 +35,7 @@ export default function BlogPage() {
         <div className="container px-4 mx-auto max-w-6xl">
           <div className="max-w-3xl mx-auto text-center">
             <div className="bg-white/40 backdrop-blur-md rounded-3xl border border-white/30 p-12 md:p-16 shadow-lg">
-              <div className="w-20 h-20 bg-gradient-to-br from-blue-600 to-cyan-500 rounded-2xl flex items-center justify-center mx-auto mb-8">
+              <div className="w-20 h-20 bg-gradient-to-br from-orange-600 to-amber-500 rounded-2xl flex items-center justify-center mx-auto mb-8">
                 <BookOpen className="w-10 h-10 text-white" />
               </div>
               <h2 className="font-heading text-3xl md:text-4xl font-bold text-gray-900 mb-6">
@@ -46,12 +46,12 @@ export default function BlogPage() {
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Link href="/how-it-works">
-                  <Button variant="primary" size="large">
+                  <Button type="button" variant="primary" size="large">
                     How It Works
                   </Button>
                 </Link>
                 <Link href="/pricing">
-                  <Button variant="outline" size="large">
+                  <Button type="button" variant="outline" size="large">
                     View Pricing
                   </Button>
                 </Link>
@@ -79,7 +79,7 @@ export default function BlogPage() {
               }
             ].map((resource, index) => (
               <div key={index} className="bg-white/40 backdrop-blur-md rounded-3xl border border-white/30 p-8 text-center">
-                <div className="w-16 h-16 bg-gradient-to-br from-blue-600 to-cyan-500 rounded-2xl flex items-center justify-center mx-auto mb-6">
+                <div className="w-16 h-16 bg-gradient-to-br from-orange-600 to-amber-500 rounded-2xl flex items-center justify-center mx-auto mb-6">
                   <resource.icon className="w-8 h-8 text-white" />
                 </div>
                 <h3 className="text-xl font-semibold text-gray-900 mb-3">
@@ -97,7 +97,7 @@ export default function BlogPage() {
       {/* Newsletter */}
       <section className="bg-white py-24">
         <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto bg-gradient-to-br from-blue-600 to-blue-700 rounded-3xl p-12 md:p-16 text-center">
+          <div className="max-w-4xl mx-auto bg-gradient-to-br from-orange-600 to-amber-700 rounded-3xl p-12 md:p-16 text-center">
             <h2 className="font-heading text-4xl md:text-5xl font-bold text-white mb-6">
               Stay updated
             </h2>
