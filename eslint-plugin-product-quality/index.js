@@ -3,8 +3,10 @@
  * Only checks actual color values, not utility classes
  */
 
+/* eslint-disable @typescript-eslint/no-require-imports */
 const fs = require('node:fs');
 const path = require('node:path');
+/* eslint-enable @typescript-eslint/no-require-imports */
 
 // List of Tailwind utility prefixes that are NOT colors
 const NON_COLOR_UTILITIES = [
@@ -170,6 +172,20 @@ module.exports = {
                         ];
 
                         if (nestedFiles.some(file => fs.existsSync(file))) {
+                          fileExists = true;
+                          break;
+                        }
+                      }
+
+                      // Check for route groups like (marketing), (dashboard), etc.
+                      if (entry.startsWith('(') && entry.endsWith(')')) {
+                        const routeGroupPath = path.join(baseDir, entry);
+                        const routeGroupFiles = [
+                          path.join(routeGroupPath, cleanPath, 'page.tsx'),
+                          path.join(routeGroupPath, cleanPath, 'page.jsx'),
+                        ];
+
+                        if (routeGroupFiles.some(file => fs.existsSync(file))) {
                           fileExists = true;
                           break;
                         }
@@ -710,6 +726,375 @@ module.exports = {
                 context.report({
                   node,
                   messageId: 'missingAriaLabel',
+                });
+              }
+            }
+          },
+        };
+      },
+    },
+
+    // ========================================
+    // NEW RULES - Template & Content Quality
+    // ========================================
+
+    'no-template-content': {
+      meta: {
+        type: 'problem',
+        docs: {
+          description: 'Detect template remnants (VoiceCraft content)',
+          category: 'Product Quality',
+          recommended: true,
+        },
+        messages: {
+          templateContent: 'Template remnant "{{keyword}}" found. Replace with {{projectName}} equivalent.',
+        },
+        schema: [{
+          type: 'object',
+          properties: {
+            projectName: { type: 'string' },
+            forbiddenWords: {
+              type: 'array',
+              items: { type: 'string' },
+            },
+          },
+        }],
+      },
+      create(context) {
+        const options = context.options[0] || {};
+        const projectName = options.projectName || 'this project';
+        const forbiddenWords = options.forbiddenWords || [];
+
+        return {
+          Literal(node) {
+            if (typeof node.value === 'string') {
+              const value = node.value.toLowerCase();
+              for (const word of forbiddenWords) {
+                if (value.includes(word.toLowerCase())) {
+                  context.report({
+                    node,
+                    messageId: 'templateContent',
+                    data: {
+                      keyword: word,
+                      projectName,
+                    },
+                  });
+                }
+              }
+            }
+          },
+          JSXText(node) {
+            const text = node.value.toLowerCase();
+            for (const word of forbiddenWords) {
+              if (text.includes(word.toLowerCase())) {
+                context.report({
+                  node,
+                  messageId: 'templateContent',
+                  data: {
+                    keyword: word,
+                    projectName,
+                  },
+                });
+              }
+            }
+          },
+        };
+      },
+    },
+
+    'no-fake-statistics': {
+      meta: {
+        type: 'problem',
+        docs: {
+          description: 'Detect fake statistics and inflated user counts',
+          category: 'Product Quality',
+          recommended: true,
+        },
+        messages: {
+          fakeStatistic: 'Fake statistic detected: "{{text}}". Use real data or remove.',
+        },
+      },
+      create(context) {
+        const patterns = [
+          /\b\d{4,}\+/,                    // 10000+, 5000+
+          /\b\d+k\+/i,                     // 10K+, 5k+
+          /\b\d\.\d\s*\/\s*5\b/,          // 4.9/5, 4.8/5
+          /\b\d+%\s+(satisfaction|happy|success)/i,  // 95% satisfaction
+          /\b(thousands|millions)\s+of\s+(users|customers|clients)/i,
+        ];
+
+        return {
+          Literal(node) {
+            if (typeof node.value === 'string') {
+              for (const pattern of patterns) {
+                if (pattern.test(node.value)) {
+                  context.report({
+                    node,
+                    messageId: 'fakeStatistic',
+                    data: { text: node.value },
+                  });
+                }
+              }
+            }
+          },
+          JSXText(node) {
+            for (const pattern of patterns) {
+              if (pattern.test(node.value)) {
+                context.report({
+                  node,
+                  messageId: 'fakeStatistic',
+                  data: { text: node.value.trim() },
+                });
+              }
+            }
+          },
+        };
+      },
+    },
+
+    'require-consistent-layout': {
+      meta: {
+        type: 'problem',
+        docs: {
+          description: 'Ensure pages use correct Header/Footer components',
+          category: 'Product Quality',
+          recommended: true,
+        },
+        messages: {
+          wrongHeader: 'Marketing pages must import Header from "@/components/marketing/layout/header"',
+          missingHeader: 'Marketing page missing Header import',
+          wrongFooter: 'Pages must import Footer from "@/components/marketing/layout/footer"',
+          missingFooter: 'Page missing Footer component',
+          dashboardNeedsNavbar: 'Dashboard pages should use Navbar from "@/components/shared/Navbar"',
+        },
+        schema: [{
+          type: 'object',
+          properties: {
+            marketingPages: {
+              type: 'array',
+              items: { type: 'string' },
+            },
+          },
+        }],
+      },
+      create(context) {
+        const filename = context.getFilename();
+        const options = context.options[0] || {};
+        const marketingPages = options.marketingPages || ['/', '/features', '/pricing', '/about', '/contact'];
+
+        // Check if this is a marketing page
+        const isMarketingPage = marketingPages.some(page => {
+          const pagePath = `${page}/page.tsx`.replace('//', '/');
+          return filename.includes(pagePath) || filename.endsWith('/page.tsx') && filename.includes(page);
+        });
+
+        const isDashboardPage = filename.includes('/dashboard/') || filename.includes('/admin/') || filename.includes('/specialist/');
+        const isAuthPage = filename.includes('/login/') || filename.includes('/signup/') || filename.includes('/auth/');
+
+        if (!isMarketingPage && !isDashboardPage || isAuthPage) {
+          return {}; // Skip auth pages
+        }
+
+        let hasHeaderImport = false;
+        let hasFooterImport = false;
+        let hasNavbarImport = false;
+        let headerSource = null;
+        let footerSource = null;
+
+        return {
+          ImportDeclaration(node) {
+            const source = node.source.value;
+
+            if (node.specifiers.some(spec => spec.local?.name === 'Header')) {
+              hasHeaderImport = true;
+              headerSource = source;
+            }
+            if (node.specifiers.some(spec => spec.local?.name === 'Footer')) {
+              hasFooterImport = true;
+              footerSource = source;
+            }
+            if (node.specifiers.some(spec => spec.local?.name === 'Navbar')) {
+              hasNavbarImport = true;
+            }
+          },
+          'Program:exit'() {
+            if (isMarketingPage) {
+              if (!hasHeaderImport) {
+                context.report({
+                  loc: { line: 1, column: 0 },
+                  messageId: 'missingHeader',
+                });
+              } else if (headerSource !== '@/components/marketing/layout/header') {
+                context.report({
+                  loc: { line: 1, column: 0 },
+                  messageId: 'wrongHeader',
+                });
+              }
+
+              if (!hasFooterImport) {
+                context.report({
+                  loc: { line: 1, column: 0 },
+                  messageId: 'missingFooter',
+                });
+              } else if (footerSource !== '@/components/marketing/layout/footer') {
+                context.report({
+                  loc: { line: 1, column: 0 },
+                  messageId: 'wrongFooter',
+                });
+              }
+            }
+
+            if (isDashboardPage && !hasNavbarImport && !hasHeaderImport) {
+              context.report({
+                loc: { line: 1, column: 0 },
+                messageId: 'dashboardNeedsNavbar',
+              });
+            }
+          },
+        };
+      },
+    },
+
+    'require-policy-content': {
+      meta: {
+        type: 'problem',
+        docs: {
+          description: 'Ensure policy pages have real content, not placeholders',
+          category: 'Product Quality',
+          recommended: true,
+        },
+        messages: {
+          noContent: 'Policy page appears empty or has placeholder content. Add real {{pageType}} content.',
+          tooShort: 'Policy content too short ({{length}} chars). Minimum {{minimum}} characters required.',
+        },
+        schema: [{
+          type: 'object',
+          properties: {
+            minimumLength: { type: 'number' },
+          },
+        }],
+      },
+      create(context) {
+        const filename = context.getFilename();
+        const options = context.options[0] || {};
+        const minimumLength = options.minimumLength || 500;
+
+        const policyPages = {
+          'terms': 'Terms of Service',
+          'privacy': 'Privacy Policy',
+          'refund': 'Refund Policy',
+          'cancellation': 'Cancellation Policy',
+          'payment': 'Payment Policy',
+          'delivery': 'Delivery Policy',
+          'cookie': 'Cookie Policy',
+        };
+
+        let pageType = null;
+        for (const [key, value] of Object.entries(policyPages)) {
+          if (filename.includes(`/${key}-`) || filename.includes(`/${key}/`)) {
+            pageType = value;
+            break;
+          }
+        }
+
+        if (!pageType) {
+          return {}; // Not a policy page
+        }
+
+        let totalTextLength = 0;
+        const forbiddenPhrases = ['coming soon', 'under construction', 'lorem ipsum', 'placeholder'];
+
+        return {
+          JSXText(node) {
+            const text = node.value.trim();
+            if (text.length > 10) {
+              totalTextLength += text.length;
+            }
+
+            const lowerText = text.toLowerCase();
+            for (const phrase of forbiddenPhrases) {
+              if (lowerText.includes(phrase)) {
+                context.report({
+                  node,
+                  messageId: 'noContent',
+                  data: { pageType },
+                });
+              }
+            }
+          },
+          'Program:exit'() {
+            if (totalTextLength < minimumLength) {
+              context.report({
+                loc: { line: 1, column: 0 },
+                messageId: 'tooShort',
+                data: {
+                  length: totalTextLength,
+                  minimum: minimumLength,
+                },
+              });
+            }
+          },
+        };
+      },
+    },
+
+    'require-auth-ui-in-dashboard': {
+      meta: {
+        type: 'problem',
+        docs: {
+          description: 'Dashboard pages must show user info and credits',
+          category: 'Product Quality',
+          recommended: true,
+        },
+        messages: {
+          missingUserDisplay: 'Dashboard page should display user name/avatar',
+          missingCreditsDisplay: 'Dashboard page should display user credits balance',
+          missingLogout: 'Dashboard page should have logout functionality',
+        },
+      },
+      create(context) {
+        const filename = context.getFilename();
+        const isDashboard = filename.includes('/dashboard/') || filename.includes('/admin/') || filename.includes('/specialist/');
+
+        if (!isDashboard) {
+          return {};
+        }
+
+        let hasUserDisplay = false;
+        let hasCreditsDisplay = false;
+
+        return {
+          JSXText(node) {
+            const text = node.value.toLowerCase();
+            if (text.includes('user') || text.includes('profile') || text.includes('account')) {
+              hasUserDisplay = true;
+            }
+            if (text.includes('credit') || text.includes('balance') || text.includes('token')) {
+              hasCreditsDisplay = true;
+            }
+          },
+          Identifier(node) {
+            if (node.name === 'credits' || node.name === 'balance' || node.name === 'userCredits') {
+              hasCreditsDisplay = true;
+            }
+            if (node.name === 'user' || node.name === 'session' || node.name === 'profile') {
+              hasUserDisplay = true;
+            }
+          },
+          'Program:exit'() {
+            // Only warn if page has actual content (not "Coming Soon")
+            const source = context.getSourceCode().getText();
+            if (!source.includes('Coming Soon') && !source.includes('Under Development')) {
+              if (!hasUserDisplay) {
+                context.report({
+                  loc: { line: 1, column: 0 },
+                  messageId: 'missingUserDisplay',
+                });
+              }
+              if (!hasCreditsDisplay) {
+                context.report({
+                  loc: { line: 1, column: 0 },
+                  messageId: 'missingCreditsDisplay',
                 });
               }
             }

@@ -7,11 +7,11 @@
 
 export const brand = {
   // Brand Name
-  name: 'Velocity',
-  tagline: 'Ship features at the speed of thought',
+  name: 'Zenith',
+  tagline: 'Reach your development peak',
 
   // Brand Description
-  description: 'Velocity is an AI-powered platform that helps developers build MVPs and ship features faster than ever before.',
+  description: 'Zenith is an AI-powered platform that helps developers build MVPs and ship features faster than ever before.',
 
   // Color Palette - Clean Fintech Sky Blue Theme
   colors: {
@@ -89,11 +89,11 @@ export const brand = {
 
   // Contact Information
   contact: {
-    email: 'hello@velocitydev.com',
-    support: 'support@velocitydev.com',
-    legal: 'legal@velocitydev.com',
-    privacy: 'privacy@velocitydev.com',
-    enterprise: 'enterprise@velocitydev.com',
+    email: 'support@zenithdev.com',
+    support: 'support@zenithdev.com',
+    legal: 'support@zenithdev.com',
+    privacy: 'support@zenithdev.com',
+    enterprise: 'support@zenithdev.com',
   },
 
   // Social Media (placeholders)
